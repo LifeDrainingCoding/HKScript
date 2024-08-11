@@ -1,4 +1,4 @@
-package com.lifedrained;
+package com.lifedrained.libs;
 
 public class Singletone {
     public static Singletone INSTANCE;
@@ -7,7 +7,17 @@ public class Singletone {
 
     }
     public static void createInstance() {
-        INSTANCE = new Singletone();
+        if (INSTANCE == null) {
+            INSTANCE = new Singletone();
+        }else{
+         throw new RuntimeException("Instance already created");
+        }
     }
-    
+
+    public void setScriptThread(ThreadExt scriptThread) {
+        this.scriptThread = scriptThread;
+    }
+    public boolean isClickerRunning() {
+        return scriptThread.isClickerRunning();
+    }
 }

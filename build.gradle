@@ -1,19 +1,60 @@
 plugins {
     id 'java'
+    id("org.beryx.jlink") version "3.0.1"
+    id "application"
 }
 
 group = 'com.lifedrained'
-version = '1.0-SNAPSHOT'
+version = '0.5'
 
 repositories {
     mavenCentral()
 }
-
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+tasks.withType(JavaCompile){
+    options.debug = true
 }
+application{
+    mainClass = 'com.lifedrained.Main'
+    mainModule = 'com.lifedrained'
+}
+dependencies {
 
+
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.10.3'
+    implementation('org.seleniumhq.selenium:selenium-java:4.23.0')
+    implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+
+
+}
 test {
     useJUnitPlatform()
+}
+jlink {
+    launcher {
+        name = 'HK_SpyAutoScript_by_Drained'
+    }
+
+    jpackage {
+
+
+            copy {
+                from 'src/main/resources/Icon.ico'
+                into "$buildDir/resources"
+            }
+
+        imageOptions = ['--win-console']
+        installerOptions = [
+                '--win-dir-chooser',
+                '--verbose',
+                '--win-shortcut',
+                '--type', 'exe'
+        ]
+        installerName = 'Drained isntaller'
+        icon = "$buildDir/resources/Icon.ico"
+        jvmArgs = [
+                '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+        ]
+    }
+
 }

@@ -1,4 +1,5 @@
-package com.lifedrained;
+package com.lifedrained.script;
 
-public class AutoLvlUp {
+public class AutoLvlUp  {
+    
 }
