@@ -22,15 +22,17 @@ dependencies {
 
     implementation 'org.junit.jupiter:junit-jupiter-engine:5.10.3'
     implementation('org.seleniumhq.selenium:selenium-java:4.23.0')
-    implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
-    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+
 
 
 }
 test {
     useJUnitPlatform()
 }
+
 jlink {
+
+
     launcher {
         name = 'HK_SpyAutoScript_by_Drained'
     }
@@ -53,8 +55,11 @@ jlink {
         installerName = 'Drained isntaller'
         icon = "$buildDir/resources/Icon.ico"
         jvmArgs = [
-                '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+                '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005',
+                '-Dfile.encoding=UTF-8'
         ]
+
     }
 
 }
+

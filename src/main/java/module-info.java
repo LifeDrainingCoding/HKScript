@@ -1,5 +1,5 @@
 module com.lifedrained{
-    requires org.apache.logging.log4j;
+
     requires org.seleniumhq.selenium.chrome_driver;
     requires org.seleniumhq.selenium.support;
     requires dev.failsafe.core;
@@ -8,5 +8,6 @@ module com.lifedrained{
     requires org.junit.jupiter.engine;
     requires org.junit.platform.commons;
     requires org.seleniumhq.selenium.api;
+    requires org.seleniumhq.selenium.firefox_driver;
 
 }
